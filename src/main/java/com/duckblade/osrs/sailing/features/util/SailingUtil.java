@@ -4,6 +4,8 @@ import javax.inject.Inject;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
+import net.runelite.api.GameObject;
+import net.runelite.api.ObjectComposition;
 import net.runelite.api.Player;
 import net.runelite.api.gameval.VarbitID;
 
@@ -31,6 +33,17 @@ public class SailingUtil
 	{
 		return client.getLocalPlayer() != null &&
 			actor instanceof Player && ((Player) actor).getId() == client.getLocalPlayer().getId();
+	}
+
+	public static ObjectComposition getTransformedObject(Client client, GameObject o)
+	{
+		ObjectComposition def = client.getObjectDefinition(o.getId());
+		if (def == null || def.getImpostorIds() == null)
+		{
+			return def;
+		}
+
+		return def.getImpostor();
 	}
 
 }

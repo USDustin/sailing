@@ -1,8 +1,8 @@
 package com.duckblade.osrs.sailing.features;
 
 import com.duckblade.osrs.sailing.SailingConfig;
-import com.duckblade.osrs.sailing.features.util.SailingUtil;
 import com.duckblade.osrs.sailing.features.util.BoatTracker;
+import com.duckblade.osrs.sailing.features.util.SailingUtil;
 import com.duckblade.osrs.sailing.model.Boat;
 import com.duckblade.osrs.sailing.model.HelmTier;
 import com.duckblade.osrs.sailing.module.PluginLifecycleComponent;
@@ -18,10 +18,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import net.runelite.api.Client;
 import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
+import net.runelite.api.ObjectComposition;
 import net.runelite.api.events.GameObjectDespawned;
 import net.runelite.api.events.GameObjectSpawned;
-import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.WorldViewUnloaded;
 import net.runelite.api.gameval.ObjectID;
 import net.runelite.client.eventbus.Subscribe;
@@ -186,15 +185,20 @@ public class RapidsOverlay
 
 		for (GameObject rapid : rapids)
 		{
-			OverlayUtil.renderTileOverlay(graphics, rapid, "", getHighlightColor(rapid));
+			ObjectComposition def = SailingUtil.getTransformedObject(client, rapid);
+			if (def != null)
+			{
+				Color colour = getHighlightColour(def.getId());
+				OverlayUtil.renderTileOverlay(graphics, rapid, "", colour);
+			}
 		}
 
 		return null;
 	}
 
-	private Color getHighlightColor(GameObject rapid)
+	private Color getHighlightColour(int objId)
 	{
-		HelmTier minTier = MIN_HELM_TIER_BY_RAPID_TYPE.get(rapid.getId());
+		HelmTier minTier = MIN_HELM_TIER_BY_RAPID_TYPE.get(objId);
 		if (minTier == null)
 		{
 			return COLOR_RAPID_UNKNOWN;

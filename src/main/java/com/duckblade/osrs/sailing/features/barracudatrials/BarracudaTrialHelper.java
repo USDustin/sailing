@@ -1,6 +1,7 @@
 package com.duckblade.osrs.sailing.features.barracudatrials;
 
 import com.duckblade.osrs.sailing.SailingConfig;
+import com.duckblade.osrs.sailing.features.util.SailingUtil;
 import com.duckblade.osrs.sailing.module.PluginLifecycleComponent;
 import com.google.common.collect.ImmutableSet;
 import java.awt.Color;
@@ -11,11 +12,11 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
 import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
+import net.runelite.api.ObjectComposition;
 import net.runelite.api.events.GameObjectDespawned;
 import net.runelite.api.events.GameObjectSpawned;
-import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.WorldViewUnloaded;
 import net.runelite.api.gameval.ObjectID;
 import net.runelite.client.eventbus.Subscribe;
@@ -222,12 +223,16 @@ public class BarracudaTrialHelper
 		ObjectID.SAILING_BT_TEMPOR_TANTRUM_COLLECTABLE_36
 	);
 
+	private final Client client;
+
 	private final Set<GameObject> lostCargo = new HashSet<>();
 	private Color crateColour;
 
 	@Inject
-	public BarracudaTrialHelper()
+	public BarracudaTrialHelper(Client client)
 	{
+		this.client = client;
+
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 	}
@@ -275,7 +280,11 @@ public class BarracudaTrialHelper
 	{
 		for (GameObject o : lostCargo)
 		{
-			OverlayUtil.renderTileOverlay(g, o, "", crateColour);
+			ObjectComposition def = SailingUtil.getTransformedObject(client, o);
+			if (def != null)
+			{
+				OverlayUtil.renderTileOverlay(g, o, "", crateColour);
+			}
 		}
 
 		return null;
