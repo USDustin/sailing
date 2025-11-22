@@ -46,7 +46,7 @@ public class BoatTracker
 		if (we.getConfig().getId() == WORLD_ENTITY_TYPE_BOAT)
 		{
 			int wvId = we.getWorldView().getId();
-			log.debug("tracking boat in wv {}", wvId);
+			log.trace("tracking boat in wv {}", wvId);
 			trackedBoats.put(wvId, new Boat(wvId));
 		}
 	}
@@ -56,7 +56,7 @@ public class BoatTracker
 	{
 		if (trackedBoats.remove(e.getWorldEntity().getWorldView().getId()) != null)
 		{
-			log.debug("removed tracking boat from wv {}", e.getWorldEntity().getWorldView().getId());
+			log.trace("removed tracking boat from wv {}", e.getWorldEntity().getWorldView().getId());
 		}
 	}
 
