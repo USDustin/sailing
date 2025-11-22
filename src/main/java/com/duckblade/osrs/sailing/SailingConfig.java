@@ -45,6 +45,14 @@ public interface SailingConfig extends Config
 	)
 	String SECTION_CARGO_HOLD_TRACKING = "cargoHoldTracking";
 
+	@ConfigSection(
+		name = "Crewmates",
+		description = "Settings for your crewmates.",
+		position = 500,
+		closedByDefault = true
+	)
+	String SECTION_CREWMATES = "crewmates";
+
 	enum ShowChartsMode
 	{
 		NONE,
@@ -184,6 +192,26 @@ public interface SailingConfig extends Config
 	default boolean cargoHoldShowCounts()
 	{
 		return true;
+	}
+
+	enum CrewmateMuteMode
+	{
+		NONE,
+		OTHER_BOATS,
+		ALL,
+		;
+	}
+
+	@ConfigItem(
+		keyName = "crewmatesMuteOverheads",
+		name = "Mute Overhead Text",
+		description = "Mutes the overhead text of crewmates.",
+		section = SECTION_CREWMATES,
+		position = 1
+	)
+	default CrewmateMuteMode crewmatesMuteOverheads()
+	{
+		return CrewmateMuteMode.NONE;
 	}
 
 }
