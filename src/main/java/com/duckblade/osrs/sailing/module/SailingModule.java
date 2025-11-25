@@ -28,6 +28,7 @@ import com.duckblade.osrs.sailing.features.mes.HideStopNavigatingDuringTrials;
 import com.duckblade.osrs.sailing.features.mes.PrioritizeCargoHold;
 import com.duckblade.osrs.sailing.features.navigation.LightningCloudsOverlay;
 import com.duckblade.osrs.sailing.features.navigation.RapidsOverlay;
+import com.duckblade.osrs.sailing.features.navigation.TrueTileIndicator;
 import com.duckblade.osrs.sailing.features.oceanencounters.Castaway;
 import com.duckblade.osrs.sailing.features.oceanencounters.ClueCasket;
 import com.duckblade.osrs.sailing.features.oceanencounters.ClueTurtle;
@@ -95,6 +96,7 @@ public class SailingModule extends AbstractModule
 		SeaChartPanelOverlay seaChartPanelOverlay,
 		SeaChartTaskIndex seaChartTaskIndex,
 		SpeedBoostInfoBox speedBoostInfoBox,
+		TrueTileIndicator trueTileIndicator,
 		WeatherTaskTracker weatherTaskTracker
 	)
 	{
@@ -133,6 +135,7 @@ public class SailingModule extends AbstractModule
 			.add(seaChartPanelOverlay)
 			.add(seaChartTaskIndex)
 			.add(speedBoostInfoBox)
+			.add(trueTileIndicator)
 			.add(weatherTaskTracker);
 
 		// features still in development

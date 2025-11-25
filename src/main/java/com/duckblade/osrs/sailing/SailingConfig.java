@@ -108,6 +108,38 @@ public interface SailingConfig extends Config
 		return true;
 	}
 
+	enum TrueTileMode
+	{
+		OFF,
+		AT_HELM,
+		ALWAYS,
+		;
+	}
+
+	@ConfigItem(
+		keyName = "navigationTrueTileIndicator",
+		name = "True \"Tile\"",
+		description = "Shows the location of your boat according to the server.<br>NOTE: Boats use sub-tile positioning.",
+		section = SECTION_NAVIGATION,
+		position = 2
+	)
+	default TrueTileMode navigationTrueTileIndicator()
+	{
+		return TrueTileMode.OFF;
+	}
+
+	@ConfigItem(
+		keyName = "navigationTrueTileIndicatorColor",
+		name = "True \"Tile\" Colour",
+		description = "The colour to use for indicating your true \"tile\".",
+		section = SECTION_NAVIGATION,
+		position = 3
+	)
+	default Color navigationTrueTileIndicatorColor()
+	{
+		return Color.CYAN;
+	}
+
 	@ConfigItem(
 		keyName = "safeRapidsColour",
 		name = "Safe Rapids Colour",
