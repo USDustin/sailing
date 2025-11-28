@@ -81,18 +81,6 @@ public class LightningCloudsOverlay
 		clouds.remove(e.getNpc());
 	}
 
-	@Subscribe
-	public void onWorldViewUnloaded(WorldViewUnloaded e)
-	{
-		if (e.getWorldView().isTopLevel())
-		{
-			client.getTopLevelWorldView()
-					.npcs()
-					.stream()
-					.forEach(clouds::remove);
-		}
-	}
-
 	@Override
 	public Dimension render(Graphics2D g)
 	{
