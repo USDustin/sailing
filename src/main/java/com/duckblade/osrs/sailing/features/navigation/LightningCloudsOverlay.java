@@ -5,11 +5,17 @@ import com.duckblade.osrs.sailing.features.util.BoatTracker;
 import com.duckblade.osrs.sailing.features.util.SailingUtil;
 import com.duckblade.osrs.sailing.module.PluginLifecycleComponent;
 import com.google.common.collect.ImmutableSet;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.util.HashSet;
+import java.util.Set;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.WorldViewUnloaded;
 import net.runelite.api.gameval.AnimationID;
 import net.runelite.api.gameval.NpcID;
 import net.runelite.client.eventbus.Subscribe;
@@ -18,21 +24,15 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.awt.*;
-import java.util.HashSet;
-import java.util.Set;
-
 @Singleton
 public class LightningCloudsOverlay
-		extends Overlay
-		implements PluginLifecycleComponent
+	extends Overlay
+	implements PluginLifecycleComponent
 {
 
 	private static final ImmutableSet<Integer> LIGHTNING_CLOUDS_WARNING_ANIM_IDS = ImmutableSet.of(
-			AnimationID.TEMPOROSS_LIGHTNING_CLOUD_CHARGING_IDLE,
-			AnimationID.SAILING_LIGHTNING_CLOUD_ATTACK
+		AnimationID.TEMPOROSS_LIGHTNING_CLOUD_CHARGING_IDLE,
+		AnimationID.SAILING_LIGHTNING_CLOUD_ATTACK
 	);
 
 	private final Client client;
