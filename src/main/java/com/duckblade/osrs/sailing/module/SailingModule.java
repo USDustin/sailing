@@ -3,6 +3,8 @@ package com.duckblade.osrs.sailing.module;
 import com.duckblade.osrs.sailing.SailingConfig;
 import com.duckblade.osrs.sailing.features.barracudatrials.HidePortalTransitions;
 import com.duckblade.osrs.sailing.features.barracudatrials.JubblyJiveHelper;
+import com.duckblade.osrs.sailing.features.courier.CourierTaskLedgerOverlay;
+import com.duckblade.osrs.sailing.features.courier.CourierTaskTracker;
 import com.duckblade.osrs.sailing.features.facilities.CargoHoldTracker;
 import com.duckblade.osrs.sailing.features.facilities.LuffOverlay;
 import com.duckblade.osrs.sailing.features.facilities.CrystalExtractorHighlight;
@@ -59,6 +61,8 @@ public class SailingModule extends AbstractModule
 		Castaway castaway,
 		ClueCasket clueCasket,
 		ClueTurtle clueTurtle,
+		CourierTaskLedgerOverlay courierTaskLedgerOverlay,
+		CourierTaskTracker courierTaskTracker,
 		CourierDestinationOverlay courierDestinationOverlay,
 		CrewmateOverheadMuter crewmateOverheadMuter,
 		CurrentDuckTaskTracker currentDuckTaskTracker,
@@ -91,6 +95,8 @@ public class SailingModule extends AbstractModule
 			.add(castaway)
 			.add(clueCasket)
 			.add(clueTurtle)
+			.add(courierTaskLedgerOverlay)
+			.add(courierTaskTracker)
 			.add(courierDestinationOverlay)
 			.add(crewmateOverheadMuter)
 			.add(currentDuckTaskTracker)

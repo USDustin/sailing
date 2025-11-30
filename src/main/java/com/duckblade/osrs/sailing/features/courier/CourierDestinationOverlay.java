@@ -1,14 +1,12 @@
 package com.duckblade.osrs.sailing.features.courier;
 
 import com.duckblade.osrs.sailing.SailingConfig;
+import com.duckblade.osrs.sailing.model.CourierTask;
 import com.duckblade.osrs.sailing.model.Port;
 import com.duckblade.osrs.sailing.module.PluginLifecycleComponent;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -25,17 +23,13 @@ public class CourierDestinationOverlay
 	implements PluginLifecycleComponent
 {
 
-	// item id -> destination
-	private static final Map<Integer, Port> ITEM_DESTINATIONS = Arrays.stream(CourierTask.values())
-		.collect(Collectors.toMap(
-			CourierTask::getItemID,
-			CourierTask::getDropOff
-		));
+	private final CourierTaskTracker taskTracker;
 
 	@Inject
-	public CourierDestinationOverlay()
+	public CourierDestinationOverlay(CourierTaskTracker taskTracker)
 	{
 		super();
+		this.taskTracker = taskTracker;
 
 		showOnInventory();
 		showOnEquipment();
@@ -52,7 +46,13 @@ public class CourierDestinationOverlay
 	@Override
 	public void renderItemOverlay(Graphics2D graphics, int itemId, WidgetItem widgetItem)
 	{
-		Port port = ITEM_DESTINATIONS.get(itemId);
+		CourierTask task = taskTracker.getTaskForItemID(itemId);
+		if (task == null)
+		{
+			return;
+		}
+
+		Port port = task.getToPort();
 		if (port == null)
 		{
 			return;
