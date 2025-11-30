@@ -240,6 +240,18 @@ public interface SailingConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+		keyName = "hideStopNavigatingDuringTrials",
+		name = "Deprio Stop-navigating During BT",
+		description = "Deprioritizes the 'Stop-navigating' and 'Escape' option while you are in a Barracuda Trial.",
+		section = SECTION_MES,
+		position = 3
+	)
+	default boolean hideStopNavigatingDuringTrials()
+	{
+		return true;
+	}
+
 	enum ShowChartsMode
 	{
 		NONE,

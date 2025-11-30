@@ -20,6 +20,7 @@ import com.duckblade.osrs.sailing.features.courier.CourierDestinationOverlay;
 import com.duckblade.osrs.sailing.features.crewmates.CrewmateOverheadMuter;
 import com.duckblade.osrs.sailing.features.mes.DeprioSailsOffHelm;
 import com.duckblade.osrs.sailing.features.mes.PrioritizeCargoHold;
+import com.duckblade.osrs.sailing.features.mes.HideStopNavigatingDuringTrials;
 import com.duckblade.osrs.sailing.features.oceanencounters.Castaway;
 import com.duckblade.osrs.sailing.features.oceanencounters.ClueCasket;
 import com.duckblade.osrs.sailing.features.oceanencounters.ClueTurtle;
@@ -61,6 +62,7 @@ public class SailingModule extends AbstractModule
 		CrewmateOverheadMuter crewmateOverheadMuter,
 		CurrentDuckTaskTracker currentDuckTaskTracker,
 		DeprioSailsOffHelm deprioSailsOffHelm,
+		HideStopNavigatingDuringTrials hideStopNavigatingDuringTrials,
 		GiantClam giantClam,
 		HidePortalTransitions hidePortalTransitions,
 		JubblyJiveHelper jubblyJiveHelper,
@@ -91,6 +93,7 @@ public class SailingModule extends AbstractModule
 			.add(crewmateOverheadMuter)
 			.add(currentDuckTaskTracker)
 			.add(deprioSailsOffHelm)
+			.add(hideStopNavigatingDuringTrials)
 			.add(giantClam)
 			.add(hidePortalTransitions)
 			.add(jubblyJiveHelper)
