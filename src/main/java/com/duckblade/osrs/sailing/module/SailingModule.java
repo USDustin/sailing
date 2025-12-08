@@ -1,7 +1,6 @@
 package com.duckblade.osrs.sailing.module;
 
 import com.duckblade.osrs.sailing.SailingConfig;
-import com.duckblade.osrs.sailing.features.reversebeep.ReverseBeep;
 import com.duckblade.osrs.sailing.features.barracudatrials.HidePortalTransitions;
 import com.duckblade.osrs.sailing.features.barracudatrials.JubblyJiveHelper;
 import com.duckblade.osrs.sailing.features.barracudatrials.LostCargoHighlighter;
@@ -39,6 +38,7 @@ import com.duckblade.osrs.sailing.features.oceanencounters.GiantClam;
 import com.duckblade.osrs.sailing.features.oceanencounters.LostShipment;
 import com.duckblade.osrs.sailing.features.oceanencounters.MysteriousGlow;
 import com.duckblade.osrs.sailing.features.oceanencounters.OceanMan;
+import com.duckblade.osrs.sailing.features.reversebeep.ReverseBeep;
 import com.duckblade.osrs.sailing.features.salvaging.SalvagingHighlight;
 import com.duckblade.osrs.sailing.features.util.BoatTracker;
 import com.google.common.collect.ImmutableSet;
@@ -112,6 +112,7 @@ public class SailingModule extends AbstractModule
 			.add(barracudaSplitsOverlayPanel)
 			.add(barracudaSplitsFileWriter)
 			.add(boatTracker)
+			.add(cargoHoldTracker)
 			.add(castaway)
 			.add(clueCasket)
 			.add(clueTurtle)
@@ -148,10 +149,9 @@ public class SailingModule extends AbstractModule
 			.add(weatherTaskTracker);
 
 		// features still in development
+		//noinspection StatementWithEmptyBody
 		if (developerMode)
 		{
-			builder
-				.add(cargoHoldTracker);
 		}
 
 		return builder.build();
